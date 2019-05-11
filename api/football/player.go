@@ -1,4 +1,4 @@
-package api
+package football
 
 import (
 	"github.com/jinzhu/gorm"
