@@ -1,4 +1,4 @@
-module models
+module github.com/pocockn/models
 
 go 1.12
 
