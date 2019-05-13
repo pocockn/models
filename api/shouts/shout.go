@@ -6,6 +6,6 @@ type (
 	// Shout holds all the information about a shout.
 	Shout struct {
 		gorm.Model
-		image string
+		Image string
 	}
 )
