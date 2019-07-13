@@ -8,13 +8,13 @@ import (
 type (
 	// ImageSimilarity is the payload sent when 2 successful shout uploads happen.
 	ImageSimilarity struct {
-		Source  []byte `json:"source"`
-		Target  []byte `json:"target"`
+		Source  string `json:"source"`
+		Target  string `json:"target"`
 		ShoutID string `json:"shout_id"`
 	}
 )
 
-func NewRawJsonImageSimilarity(source []byte, target []byte, shoutID string) (json.RawMessage, error) {
+func NewRawJsonImageSimilarity(source string, target string, shoutID string) (json.RawMessage, error) {
 	imageSimilartity := ImageSimilarity{
 		Source:  source,
 		Target:  target,
