@@ -2,6 +2,7 @@ package lambda
 
 import (
 	"encoding/json"
+	"github.com/pkg/errors"
 	"github.com/pocockn/models/sns"
 )
 
@@ -33,12 +34,15 @@ func NewImageSimilarityFromSNSPayload(data json.RawMessage) (ImageSimilarity, er
 	var imageSimilarity ImageSimilarity
 	notification, err := sns.NewNotification(data)
 	if err != nil {
-		return imageSimilarity, err
+		return imageSimilarity, errors.Wrapf(err, "problem creating new notification from data %+v", data)
 	}
 
 	err = json.Unmarshal(json.RawMessage(notification.Message), &imageSimilarity)
 	if err != nil {
-		return imageSimilarity, err
+		return imageSimilarity, errors.Wrapf(
+			err, "problem unmarshalling notificaiton message into image simialrity struct %+v",
+			notification.Message,
+		)
 	}
 
 	return imageSimilarity, nil
